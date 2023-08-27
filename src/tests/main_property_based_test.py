@@ -59,7 +59,14 @@ def random_tags_object(draw, str_bool_val):
 @st.composite
 def random_bucket_responses(draw, pii_regime):
     buckets = draw(random_list_bucket_response())
-    tags = draw(st.lists(random_tags_object(pii_regime)))
+    num_buckets = len(buckets["Buckets"])
+    tags = draw(
+        st.lists(
+            random_tags_object(pii_regime),
+            min_size=num_buckets, # adding these bounds sped up generation like crazy!
+            max_size=num_buckets,
+        )
+    )
     assume(len(buckets["Buckets"]) == len(tags))
     return buckets, tags
 
