@@ -31,9 +31,9 @@
 - There is a strategy for random functions, `st.functions`. You can provide a type signature or an example lambda + Hypothesis will generate functions of that type. Usually, if it finds a failing example function, it will present it to you + you can see what it does. However, if your functions never actually get called, then example generation kinda breaks. 
     - this can result in a failing output being presented as `lambda: unknown`. 
 
-- I refactored my random_tags_object strategy + it broke some tests! I expected the call-not-assert pattern to catch one of the bugs (assuming a non-empty TagSet) in has_pii_content, but it never did. I needed to write two additional tests (one with no pii presesnt (didn't catch it) and one where the object always has pii). The situation where a tag always has pii is what caught the bug, but it a more complicated way than I wanted. 
-    - the reason for all this rigamarole is bc I accidentally built random_tags_object in such a way that it always returns a **NON-EMPTY LIST OF TAGS**. Hence, I literally could not generate data to catch the bug. whoops! 
-- moral of the story here is to be very very careful when constructing generators for data, since you might accidentally rule out edge cases you actually want to test!
+- I refactored my random_tags_object strategy + it broke some tests! I expected the call-not-assert pattern to catch one of the bugs (assuming a non-empty TagSet) in has_pii_content, but it never did. I needed to write two additional tests (one with no pii presesnt (*didn't catch it*) and one where the object always has pii). The situation where a tag **always has pii** is what caught the bug, but it a more complicated way than I wanted. 
+    - the reason for all this is bc I accidentally built random_tags_object in such a way that it always returns a **NON-EMPTY LIST OF TAGS**. Hence, I literally could not generate data to catch the bug I was hoping for. whoops! 
+- The moral of the story here is to be very very careful when constructing generators for data, since you might accidentally **rule out edge cases you actually want to test**!
     
     
 
