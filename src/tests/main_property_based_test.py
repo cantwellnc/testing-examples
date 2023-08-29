@@ -63,7 +63,7 @@ def random_bucket_responses(draw, pii_regime):
     tags = draw(
         st.lists(
             random_tags_object(pii_regime),
-            min_size=num_buckets, # adding these bounds sped up generation like crazy!
+            min_size=num_buckets,  # adding these bounds sped up generation like crazy!
             max_size=num_buckets,
         )
     )

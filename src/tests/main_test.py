@@ -8,10 +8,10 @@ from main import (
 )
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def mock_s3():
     mock = MagicMock()
-    mock.list_bucket.return_value = {
+    mock.list_buckets.return_value = {
         "Buckets": [
             {"Name": f"string{i}", "CreationDate": "2015-09-14T20:00:00.000Z"}
             for i in range(6)

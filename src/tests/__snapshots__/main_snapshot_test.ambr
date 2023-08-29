@@ -1,0 +1,17 @@
+# serializer version: 1
+# name: test_get_tags_for_all_buckets
+  list([
+  ])
+# ---
+# name: test_handler
+  0
+# ---
+# name: test_has_pii_content
+  True
+# ---
+# name: test_has_pii_content.1
+  False
+# ---
+# name: test_list_bucket
+  <MagicMock name='mock.list_buckets()' id='140364591224416'>
+# ---
